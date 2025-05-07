@@ -1,6 +1,7 @@
 const ThoughtCard = ({ text, likes, time, onLike }) => {
   return (
-    <div className="bg-white border-2 rounded-sm shadow-solid-offset p-4 mb-8 max-w-lg w-full min-w-[300px] mx-auto flex flex-col justify-between">
+    <div className="bg-white border-2 rounded-sm shadow-solid-offset p-4 mb-8 w-full max-w-[510px] min-h-[140px] mx-auto break-words"
+    >
       <p className="font-mono text-xl break-words ">{text}</p>
       <div className="flex justify-between items-center mt-4">
         <div className="flex items-center justify-between gap-2">
@@ -19,3 +20,8 @@ const ThoughtCard = ({ text, likes, time, onLike }) => {
 };
 
 export default ThoughtCard;
+
+
+
+
+// "bg-[#F2F0F0] border-2 rounded-sm shadow-solid-offset p-4 mb-8 max-w-lg w-full mx-auto"

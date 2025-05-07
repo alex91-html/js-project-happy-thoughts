@@ -47,6 +47,7 @@ const ThoughtInput = ({ onAddThought }) => {
   };
 
   return (
+
     <form
       onSubmit={handleSubmit}
       className="bg-[#F2F0F0] border-2 rounded-sm shadow-solid-offset p-4 mb-8 max-w-lg w-full mx-auto"
