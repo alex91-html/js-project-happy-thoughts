@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const MAX_LENGTH = 140;
 const MIN_LENGTH = 5;
@@ -6,8 +6,21 @@ const MIN_LENGTH = 5;
 const ThoughtInput = ({ onAddThought }) => {
   const [text, setText] = useState("");
   const [error, setError] = useState("");
+  const textareaRef = useRef(null);
 
   const charsLeft = MAX_LENGTH - text.length;
+
+  const handleInput = (e) => {
+    setText(e.target.value);
+    setError("");
+
+    // Auto-resize the textarea
+    const textarea = textareaRef.current;
+    if (textarea) {
+      textarea.style.height = "auto"; // Reset height
+      textarea.style.height = `${textarea.scrollHeight}px`; // Set to scroll height
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,6 +39,11 @@ const ThoughtInput = ({ onAddThought }) => {
     onAddThought(text.trim());
     setText("");
     setError("");
+
+    // Reset textarea height
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+    }
   };
 
   return (
@@ -38,15 +56,14 @@ const ThoughtInput = ({ onAddThought }) => {
       </label>
 
       <textarea
+        ref={textareaRef}
         className="bg-[#FFFFFF] w-full border-2 rounded-sm p-2 font-mono mb-2 resize-none"
         rows={2}
         value={text}
-        onChange={(e) => {
-          setText(e.target.value);
-          setError("");
-        }}
+        onInput={handleInput}
         placeholder="Type your happy thought here..."
         maxLength={MAX_LENGTH + 10}
+        style={{ overflow: "hidden" }}
       />
 
       <div className="flex justify-between items-center mb-4">

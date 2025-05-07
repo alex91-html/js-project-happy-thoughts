@@ -10,6 +10,15 @@ export const App = () => {
       { text, likes: 0, time: "just now", animate: true },
       ...thoughts.map((t) => ({ ...t, animate: false })),
     ]);
+
+
+    setTimeout(() => {
+      setThoughts((prevThoughts) =>
+        prevThoughts.map((t, i) =>
+          i === 0 ? { ...t, animate: false } : t
+        )
+      );
+    }, 500);
   };
 
   const likeThought = (idx) => {
