@@ -24,16 +24,16 @@ const ThoughtInput = ({ onAddThought }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!text.trim()) {
+      setError("Please enter a happy thought!");
+      return;
+    }
     if (text.trim().length < MIN_LENGTH) {
       setError("Your thought is too short!");
       return;
     }
     if (text.trim().length > MAX_LENGTH) {
       setError("Your thought is too long!");
-      return;
-    }
-    if (!text.trim()) {
-      setError("Please enter a happy thought!");
       return;
     }
     onAddThought(text.trim());
@@ -78,8 +78,7 @@ const ThoughtInput = ({ onAddThought }) => {
 
       <button
         type="submit"
-        className="bg-gradient-to-r from-pink-400 to-pink-300 text-white font-semibold rounded-full px-6 py-2 shadow flex items-center gap-2 mx-auto block hover:from-pink-500 hover:to-pink-400 transition disabled:opacity-50"
-        disabled={text.length < MIN_LENGTH || text.length > MAX_LENGTH}
+        className="bg-gradient-to-r from-pink-400 to-pink-300 text-white font-semibold rounded-full px-6 py-2 shadow flex items-center gap-2 mx-auto hover:from-pink-500 hover:to-pink-400 transition disabled:opacity-50"
       >
         <span role="img" aria-label="heart">❤️</span>
         Send Happy Thought
