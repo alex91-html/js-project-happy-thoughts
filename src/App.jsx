@@ -1,24 +1,15 @@
 import { useState } from "react";
 import ThoughtInput from "./components/ThoughtInput";
-import ThoughtCard from "./components/ThoughtCard";
+import ThoughtList from "./components/ThoughtList";
 
 export const App = () => {
   const [thoughts, setThoughts] = useState([]);
 
   const addThought = (text) => {
     setThoughts([
-      { text, likes: 0, time: "just now", animate: true },
-      ...thoughts.map((t) => ({ ...t, animate: false })),
+      { text, likes: 0, time: "just now" },
+      ...thoughts,
     ]);
-
-
-    setTimeout(() => {
-      setThoughts((prevThoughts) =>
-        prevThoughts.map((t, i) =>
-          i === 0 ? { ...t, animate: false } : t
-        )
-      );
-    }, 500);
   };
 
   const likeThought = (idx) => {
@@ -29,17 +20,11 @@ export const App = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 flex flex-col items-center px-2">
-      <ThoughtInput onAddThought={addThought} />
-      {thoughts.map((thought, idx) => (
-        <div key={idx} className={thought.animate ? "animate-fadeIn" : ""}>
-          <ThoughtCard
-            text={thought.text}
-            likes={thought.likes}
-            time={thought.time}
-            onLike={() => likeThought(idx)}
-          />
-        </div>
-      ))}
+      <div className="max-w-xl w-full mx-auto">
+        <header className="text-5xl font-bold mb-11 text-center text-pink-400">Happy Thought</header>
+        <ThoughtInput onAddThought={addThought} />
+        <ThoughtList thoughts={thoughts} onLike={likeThought} />
+      </div>
     </div>
   );
 };

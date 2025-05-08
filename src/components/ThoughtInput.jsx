@@ -39,14 +39,14 @@ const ThoughtInput = ({ onAddThought }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-[#F2F0F0] border-2 rounded-sm shadow-solid-offset p-4 mb-8 max-w-lg w-full mx-auto"
+      className="bg-[#F2F0F0] border-2 rounded-sm shadow-solid-offset p-4 mb-8 w-full mx-auto"
     >
-      <label className="block mb-2 font-semibold text-[#333]">
+      <label className="block mb-2 font-semibold text-[#333] text-lg">
         What's making you happy right now?
       </label>
 
       <textarea
-        className="bg-[#FFFFFF] w-full border-2 rounded-sm p-2 font-mono mb-2 resize-none"
+        className="bg-[#FFFFFF] w-full border-2 rounded-sm p-2 font-mono mb-2 resize-none text-lg"
         rows={2}
         value={text}
         onInput={handleInput}
@@ -57,16 +57,16 @@ const ThoughtInput = ({ onAddThought }) => {
 
       <div className="flex justify-between items-center mb-4">
         <span
-          className={`text-sm ${charsLeft < 0 ? "text-red-500" : "text-gray-400"}`}
+          className={`text-sm ${charsLeft < 0 ? "text-red-500" : "text-gray-400"} text-lg`}
         >
           {charsLeft} characters left
         </span>
-        {error && <span className="text-red-500 text-sm">{error}</span>}
+        {error && <span className="text-red-500 text-lg">{error}</span>}
       </div>
 
       <button
         type="submit"
-        className="bg-gradient-to-r from-pink-400 to-pink-300 text-white font-semibold rounded-full px-6 py-2 shadow flex items-center gap-2 mx-auto hover:from-pink-500 hover:to-pink-400 transition disabled:opacity-50"
+        className="bg-gradient-to-r from-pink-400 to-pink-300 text-white font-semibold rounded-full px-6 py-2 shadow flex gap-2 mx-auto hover:from-pink-500 hover:to-pink-400 transition disabled:opacity-50 cursor-pointer"
       >
         <span role="img" aria-label="heart">❤️</span>
         Send Happy Thought
