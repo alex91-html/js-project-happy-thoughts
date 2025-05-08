@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ThoughtInput from "./components/ThoughtInput";
 import ThoughtList from "./components/ThoughtList";
 
