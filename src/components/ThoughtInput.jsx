@@ -55,13 +55,13 @@ const ThoughtInput = ({ onAddThought }) => {
         style={{ overflow: "hidden" }}
       />
 
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
         <span
-          className={`text-sm ${charsLeft < 0 ? "text-red-500" : "text-gray-400"} text-lg`}
+          className={`text-sm ${charsLeft < 0 ? "text-red-500" : "text-gray-400"}`}
         >
           {charsLeft} characters left
         </span>
-        {error && <span className="text-red-500 text-lg">{error}</span>}
+        {error && <span className="text-red-500 text-sm sm:mt-0 mt-2">{error}</span>}
       </div>
 
       <button
