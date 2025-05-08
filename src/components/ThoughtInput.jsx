@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 const MAX_LENGTH = 140;
 const MIN_LENGTH = 5;
@@ -6,24 +6,19 @@ const MIN_LENGTH = 5;
 const ThoughtInput = ({ onAddThought }) => {
   const [text, setText] = useState("");
   const [error, setError] = useState("");
-  const textareaRef = useRef(null);
 
   const charsLeft = MAX_LENGTH - text.length;
 
-  const handleInput = (e) => {
-    setText(e.target.value);
+  const handleInput = (event) => {
+    setText(event.target.value);
     setError("");
 
-    // Auto-resize the textarea
-    const textarea = textareaRef.current;
-    if (textarea) {
-      textarea.style.height = "auto"; // Reset height
-      textarea.style.height = `${textarea.scrollHeight}px`; // Set to scroll height
-    }
+    event.target.style.height = "auto";
+    event.target.style.height = `${event.target.scrollHeight}px`;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     if (!text.trim()) {
       setError("Please enter a happy thought!");
       return;
@@ -39,15 +34,9 @@ const ThoughtInput = ({ onAddThought }) => {
     onAddThought(text.trim());
     setText("");
     setError("");
-
-    // Reset textarea height
-    if (textareaRef.current) {
-      textareaRef.current.style.height = "auto";
-    }
   };
 
   return (
-
     <form
       onSubmit={handleSubmit}
       className="bg-[#F2F0F0] border-2 rounded-sm shadow-solid-offset p-4 mb-8 max-w-lg w-full mx-auto"
@@ -57,7 +46,6 @@ const ThoughtInput = ({ onAddThought }) => {
       </label>
 
       <textarea
-        ref={textareaRef}
         className="bg-[#FFFFFF] w-full border-2 rounded-sm p-2 font-mono mb-2 resize-none"
         rows={2}
         value={text}
