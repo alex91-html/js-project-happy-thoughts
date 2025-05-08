@@ -61,7 +61,7 @@ export const App = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-8 flex flex-col items-center px-2">
       <div className="max-w-xl w-full mx-auto">
-        <header className="text-5xl font-bold mb-11 text-center text-pink-400">Happy Thought</header>
+        <h1 className="text-5xl font-bold mb-11 text-center text-pink-400">Happy Thought</h1>
         <ThoughtInput onAddThought={addThought} />
         <ThoughtList thoughts={thoughts} onLike={likeThought} />
       </div>

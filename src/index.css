@@ -6,8 +6,15 @@
 }
 
 
+h1 {
+  transition: letter-spacing 5s;
+  cursor: pointer;
+}
 
-
+h1:hover {
+  letter-spacing: 3px;
+  transition: letter-spacing 500ms;
+}
 
 @layer utilities {
 
