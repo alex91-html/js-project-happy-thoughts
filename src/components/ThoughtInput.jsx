@@ -66,8 +66,7 @@ const ThoughtInput = ({ onAddThought }) => {
 
       <button
         type="submit"
-        className="bg-gradient-to-r from-pink-400 to-pink-300 text-white font-semibold rounded-full px-6 py-2 shadow flex gap-2 mx-auto hover:from-pink-500 hover:to-pink-400 transition disabled:opacity-50 cursor-pointer"
-      >
+        className="bg-[#ff6661] text-black font-semibold rounded-full px-6 py-2 shadow flex gap-2 mx-auto hover:bg-pink-500 hover:scale-105 transition-transform duration-300 ease-in-out disabled:opacity-50 cursor-pointer">
         <span role="img" aria-label="heart">❤️</span>
         Send Happy Thought
         <span role="img" aria-label="heart">❤️</span>
