@@ -11,6 +11,7 @@ const ThoughtList = ({ thoughts, onLike }) => {
           hearts={thought.hearts}
           createdAt={thought.createdAt}
           onLike={onLike}
+
         />
       ))}
     </div>

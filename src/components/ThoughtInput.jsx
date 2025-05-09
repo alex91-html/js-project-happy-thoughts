@@ -46,7 +46,7 @@ const ThoughtInput = ({ onAddThought }) => {
       </label>
 
       <textarea
-        className="bg-[#FFFFFF] w-full border-2 rounded-sm p-2 font-mono mb-2 resize-none text-lg"
+        className="bg-[#FFFFFF] w-full border-2 border-gray-300 rounded-sm p-2 font-mono mb-2 resize-none text-lg focus:outline-pink-300"
         rows={2}
         value={text}
         onInput={handleInput}
@@ -66,7 +66,7 @@ const ThoughtInput = ({ onAddThought }) => {
 
       <button
         type="submit"
-        className="bg-[#ff6661] text-black font-semibold rounded-full px-6 py-2 shadow flex gap-2 mx-auto hover:bg-pink-500 hover:scale-105 transition-transform duration-300 ease-in-out disabled:opacity-50 cursor-pointer">
+        className="bg-pink-300  text-black font-semibold rounded-full px-10 py-2 shadow flex gap-2 mx-auto hover:bg-pink-500 hover:scale-105 transition-transform duration-300 ease-in-out disabled:opacity-50 cursor-pointer">
         <span role="img" aria-label="heart">❤️</span>
         Send Happy Thought
         <span role="img" aria-label="heart">❤️</span>

@@ -2,7 +2,6 @@ const ThoughtCard = ({ id, message, hearts, createdAt, onLike }) => {
   const getTime = (date) => {
     const now = new Date();
     const seconds = Math.floor((now - new Date(date)) / 1000);
-
     if (seconds < 60) return `${seconds} seconds ago`;
     const minutes = Math.floor(seconds / 60);
     if (minutes < 60) return `${minutes} minutes ago`;
@@ -13,7 +12,7 @@ const ThoughtCard = ({ id, message, hearts, createdAt, onLike }) => {
   };
 
   return (
-    <div className="bg-white border-2 rounded-sm shadow-solid-offset p-4 mb-8 w-full">
+    <div className="bg-white border-2 rounded-sm shadow-solid-offset p-4 mb-8 w-full animate-fadeIn">
       <p className="font-mono text-xl break-words">{message}</p>
       <div className="flex justify-between items-center mt-4">
         <div className="flex items-center gap-2">
