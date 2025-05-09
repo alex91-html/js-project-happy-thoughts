@@ -66,12 +66,12 @@ const ThoughtInput = ({ onAddThought }) => {
 
       <button
         type="submit"
-        className="bg-pink-300  text-black font-semibold rounded-full px-10 py-2 shadow flex gap-2 mx-auto hover:bg-pink-500 hover:scale-105 transition-transform duration-300 ease-in-out disabled:opacity-50 cursor-pointer">
-        <span role="img" aria-label="heart">❤️</span>
+        className=" bg-pink-300 text-black font-semibold rounded-full py-2 shadow flex items-center justify-center gap-2 mx-auto hover:bg-pink-500 hover:scale-105 transition-transform duration-300 ease-in-out disabled:opacity-50 cursor-pointer px-6 sm:px-10">
+        <span role="img" aria-label="heart" className="text-xl">❤️</span>
         Send Happy Thought
-        <span role="img" aria-label="heart">❤️</span>
+        <span role="img" aria-label="heart" className="text-xl">❤️</span>
       </button>
-    </form>
+    </form >
   );
 };
 

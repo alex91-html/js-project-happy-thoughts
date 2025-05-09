@@ -51,7 +51,7 @@ export const App = () => {
       }
     } catch (error) {
       console.log("Error liking thought:", error);
-    } // fix
+    }
   };
 
   useEffect(() => {
