@@ -12,11 +12,10 @@ export const App = () => {
       const response = await fetch(API_URL);
       if (response.ok) {
         const data = await response.json();
-        console.log("Fetched thoughts:", data);
         setThoughts(data);
       }
     } catch (error) {
-      console.log("Error fetching thoughts:", error);
+      // Optionally, handle errors more gracefully here
     }
   };
 
