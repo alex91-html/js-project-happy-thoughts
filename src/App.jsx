@@ -26,14 +26,14 @@ export const App = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newThought),
-      }); // Send a POST request to add a new thought, this is pretty cool
+      });
 
       if (response.ok) {
         const createdThought = await response.json();
         setThoughts([createdThought, ...thoughts]);
       }
     } catch (error) {
-      console.log("Error adding thought:", error);
+      // Optionally, handle errors more gracefully here
     }
   };
 
@@ -41,7 +41,7 @@ export const App = () => {
     try {
       const response = await fetch(`${API_URL}/${id}/like`, {
         method: "POST",
-      }); // Send a POST request to like the thought, this is pretty cool 
+      });
 
       if (response.ok) {
         setThoughts(thoughts.map((thought) =>
@@ -49,7 +49,7 @@ export const App = () => {
         ));
       }
     } catch (error) {
-      console.log("Error liking thought:", error);
+      // Optionally, handle errors more gracefully here
     }
   };
 
