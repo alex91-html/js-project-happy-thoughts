@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import ThoughtInput from "./components/ThoughtInput";
 import ThoughtList from "./components/ThoughtList";
 
-const API_URL = "https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts";
+const API_URL = "https://happy-thoughts-api-4ful.onrender.com/thoughts";
 
 export const App = () => {
   const [thoughts, setThoughts] = useState([]);
