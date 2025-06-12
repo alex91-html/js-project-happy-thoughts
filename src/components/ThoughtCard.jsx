@@ -1,4 +1,4 @@
-const ThoughtCard = ({ id, message, hearts, createdAt, onLike }) => {
+const ThoughtCard = ({ id, message, hearts, createdAt, onLike, onUpdate, onDelete }) => {
   const getTime = (date) => {
     const now = new Date();
     const seconds = Math.floor((now - new Date(date)) / 1000);
@@ -24,6 +24,16 @@ const ThoughtCard = ({ id, message, hearts, createdAt, onLike }) => {
           <span className="text-gray-400">x {hearts}</span>
         </div>
         <span className="text-xs text-gray-400">{getTime(createdAt)}</span>
+        <button
+          onClick={() => onUpdate(id)}
+          className="text-blue-500 hover:underline">
+          Update
+        </button>
+        <button
+          onClick={() => onDelete(id)}
+          className="text-red-500 hover:underline">
+          Delete
+        </button>
       </div>
     </div>
   );
