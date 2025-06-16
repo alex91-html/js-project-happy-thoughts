@@ -17,7 +17,7 @@ const ThoughtInput = ({ onAddThought }) => {
     event.target.style.height = `${event.target.scrollHeight}px`;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (!text.trim()) {
       setError("Please enter a happy thought!");
@@ -31,9 +31,15 @@ const ThoughtInput = ({ onAddThought }) => {
       setError("Your thought is too long!");
       return;
     }
-    onAddThought(text.trim());
-    setText("");
-    setError("");
+
+    try {
+      await onAddThought(text.trim()); // Call the function to add the thought
+      setText(""); // Clear the input field
+      setError(""); // Clear any error messages
+    } catch (error) {
+      setError("Failed to send your thought. Please try again!");
+      console.error("Error adding thought:", error);
+    }
   };
 
   return (

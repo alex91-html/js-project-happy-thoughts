@@ -6,7 +6,7 @@ const ThoughtList = ({ thoughts, onLike, onUpdate, onDelete }) => {
   }
 
   return (
-    <div>
+    <div className="space-y-4">
       {thoughts.map((thought) => (
         <ThoughtCard
           key={thought._id}
