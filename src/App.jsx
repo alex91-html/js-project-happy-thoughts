@@ -42,6 +42,68 @@ const App = () => {
     }
   };
 
+  const likeThought = async (id) => {
+    try {
+      const response = await fetch(`${API_URL}/thoughts/${id}/like`, {
+        method: "POST",
+      });
+
+      if (response.ok) {
+        const updatedThought = await response.json();
+        setThoughts((prevThoughts) =>
+          prevThoughts.map((thought) =>
+            thought._id === id ? updatedThought : thought
+          )
+        );
+      } else {
+        console.error("Failed to like thought:", response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error("Error liking thought:", error);
+    }
+  };
+
+  const updateThought = async (id, newMessage) => {
+    try {
+      const response = await fetch(`${API_URL}/thoughts/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: newMessage }),
+      });
+
+      if (response.ok) {
+        const updatedThought = await response.json();
+        setThoughts((prevThoughts) =>
+          prevThoughts.map((thought) =>
+            thought._id === id ? updatedThought : thought
+          )
+        );
+      } else {
+        console.error("Failed to update thought:", response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error("Error updating thought:", error);
+    }
+  };
+
+  const deleteThought = async (id) => {
+    try {
+      const response = await fetch(`${API_URL}/thoughts/${id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        setThoughts((prevThoughts) =>
+          prevThoughts.filter((thought) => thought._id !== id)
+        );
+      } else {
+        console.error("Failed to delete thought:", response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error("Error deleting thought:", error);
+    }
+  };
+
   useEffect(() => {
     fetchThoughts();
   }, []);
@@ -51,7 +113,12 @@ const App = () => {
       <div className="max-w-xl w-full mx-auto">
         <h1 className="text-5xl font-bold mb-11 text-center text-pink-400">Happy Thoughts</h1>
         <ThoughtInput onAddThought={addThought} />
-        <ThoughtList thoughts={thoughts} />
+        <ThoughtList
+          thoughts={thoughts}
+          onLike={likeThought}
+          onUpdate={updateThought}
+          onDelete={deleteThought}
+        />
       </div>
     </div>
   );
