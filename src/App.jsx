@@ -3,6 +3,7 @@ import ThoughtInput from "./components/ThoughtInput";
 import ThoughtList from "./components/ThoughtList";
 
 const API_URL = "https://alex-js-project-api.onrender.com";
+// const API_URL = "http://localhost:8080"; // Uncomment for local development
 
 const App = () => {
   const [thoughts, setThoughts] = useState([]);
@@ -58,6 +59,44 @@ const App = () => {
     }
   };
 
+  const updateThought = async (id, updatedMessage) => {
+    try {
+      const response = await fetch(`${API_URL}/thoughts/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: updatedMessage }),
+      });
+
+      if (response.ok) {
+        const updatedThought = await response.json();
+        setThoughts(thoughts.map((thought) =>
+          thought._id === id ? updatedThought : thought
+        ));
+      } else {
+        console.error("Failed to update thought:", response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error("Error updating thought:", error);
+    }
+  };
+
+  const deleteThought = async (id) => {
+    try {
+      const response = await fetch(`${API_URL}/thoughts/${id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        // Remove the deleted thought from the state
+        setThoughts(thoughts.filter((thought) => thought._id !== id));
+      } else {
+        console.error("Failed to delete thought:", response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error("Error deleting thought:", error);
+    }
+  };
+
   useEffect(() => {
     fetchThoughts();
   }, []);
@@ -68,7 +107,7 @@ const App = () => {
       <div className="max-w-xl w-full mx-auto">
         <h1 className="text-5xl font-bold mb-11 text-center text-pink-400">Happy Thought</h1>
         <ThoughtInput onAddThought={addThought} />
-        <ThoughtList thoughts={thoughts} onLike={likeThought} />
+        <ThoughtList thoughts={thoughts} onLike={likeThought} onUpdate={updateThought} onDelete={deleteThought} />
       </div>
     </div>
   );
