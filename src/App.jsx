@@ -24,7 +24,9 @@ const App = () => {
   const addThought = async (text) => {
     const newThought = { message: text };
 
+
     try {
+      console.log("Adding new thought:", newThought);
       const response = await fetch(`${API_URL}/thoughts`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
