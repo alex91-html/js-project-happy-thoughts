@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import ThoughtInput from "./components/ThoughtInput";
 import ThoughtList from "./components/ThoughtList";
 
-const API_URL = "https://alex-js-project-api.onrender.com"
+const API_URL = "http://localhost:8080"
 
 const App = () => {
   const [thoughts, setThoughts] = useState([]);
