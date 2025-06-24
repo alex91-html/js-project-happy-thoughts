@@ -5,14 +5,12 @@ const API_URL = "http://localhost:8080"; // Change if needed for production
 const AuthForm = ({ onAuthSuccess, onClose }) => {
   const [mode, setMode] = useState("login"); // 'login' or 'register'
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const resetForm = () => {
     setUsername("");
-    setEmail("");
     setPassword("");
     setError("");
   };
@@ -23,9 +21,7 @@ const AuthForm = ({ onAuthSuccess, onClose }) => {
     setLoading(true);
     try {
       const endpoint = mode === "register" ? "/auth/register" : "/auth/login";
-      const body = mode === "register"
-        ? { username, email, password }
-        : { email, password };
+      const body = { username, password };
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -51,23 +47,13 @@ const AuthForm = ({ onAuthSuccess, onClose }) => {
       <h2 className="text-2xl font-bold text-center mb-2">
         {mode === "login" ? "Login" : "Register"}
       </h2>
-      {mode === "register" && (
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-          required
-          minLength={3}
-          className="border rounded px-3 py-2"
-        />
-      )}
       <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={e => setEmail(e.target.value)}
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={e => setUsername(e.target.value)}
         required
+        minLength={3}
         className="border rounded px-3 py-2"
       />
       <input
