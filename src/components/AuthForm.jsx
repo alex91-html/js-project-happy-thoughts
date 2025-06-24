@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const API_URL = "http://localhost:8080"; // Change if needed for production
+const API_URL = "https://alex-js-project-api.onrender.com";
 
 const AuthForm = ({ onAuthSuccess, onClose }) => {
   const [mode, setMode] = useState("login"); // 'login' or 'register'
