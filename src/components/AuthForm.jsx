@@ -82,7 +82,7 @@ const AuthForm = ({ onAuthSuccess, onClose }) => {
       {error && <div className="text-red-500 text-sm text-center">{error}</div>}
       <button
         type="submit"
-        className="bg-pink-400 text-white font-semibold rounded py-2 hover:bg-pink-500 transition"
+        className="bg-pink-400 text-white font-semibold rounded py-2 hover:bg-pink-500 transition cursor-pointer"
         disabled={loading}
       >
         {loading ? (mode === "login" ? "Logging in..." : "Registering...") : (mode === "login" ? "Login" : "Register")}
@@ -91,14 +91,14 @@ const AuthForm = ({ onAuthSuccess, onClose }) => {
         {mode === "login" ? (
           <>
             Don't have an account?{' '}
-            <button type="button" className="text-blue-500 underline" onClick={() => { setMode("register"); setError(""); }}>
+            <button type="button" className="text-blue-500 underline cursor-pointer" onClick={() => { setMode("register"); setError(""); }}>
               Register
             </button>
           </>
         ) : (
           <>
             Already have an account?{' '}
-            <button type="button" className="text-blue-500 underline" onClick={() => { setMode("login"); setError(""); }}>
+            <button type="button" className="text-blue-500 underline cursor-pointer" onClick={() => { setMode("login"); setError(""); }}>
               Login
             </button>
           </>

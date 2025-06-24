@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FiEdit, FiTrash } from "react-icons/fi"; // Import icons
 
-const ThoughtCard = ({ id, message, hearts, createdAt, onLike, onUpdate, onDelete }) => {
+const ThoughtCard = ({ id, message, hearts, createdAt, onLike, onUpdate, onDelete, accessToken }) => {
   const [isEditing, setIsEditing] = useState(false); // Track editing mode
   const [editedMessage, setEditedMessage] = useState(message); // Track the updated message
 
@@ -58,18 +58,22 @@ const ThoughtCard = ({ id, message, hearts, createdAt, onLike, onUpdate, onDelet
         ) : (
           // Show "Edit" and "Delete" buttons in view mode with icons
           <>
-            <button
-              onClick={() => setIsEditing(true)}
-              className="flex items-center gap-1 text-gray-400 hover:text-blue-700 hover:cursor:pointer cursor-pointer"
-            >
-              <FiEdit size={20} />
-            </button>
-            <button
-              onClick={() => onDelete(id)}
-              className="flex items-center gap-1 text-gray-400 hover:text-red-500 hover:cursor:pointer cursor-pointer"
-            >
-              <FiTrash size={20} />
-            </button>
+            {accessToken && (
+              <div className="flex gap-1">
+                <button
+                  onClick={() => setIsEditing(true)}
+                  className="flex items-center text-gray-400 hover:text-blue-700 cursor-pointer"
+                >
+                  <FiEdit size={20} />
+                </button>
+                <button
+                  onClick={() => onDelete(id)}
+                  className="flex items-center text-gray-400 hover:text-red-500 cursor-pointer"
+                >
+                  <FiTrash size={20} />
+                </button>
+              </div>
+            )}
           </>
         )}
       </div>

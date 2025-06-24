@@ -13,7 +13,7 @@ const Modal = ({ isOpen, onClose, children }) => {
         onClick={e => e.stopPropagation()} // Prevent closing when clicking inside modal
       >
         <button
-          className="absolute top-2 right-2 text-gray-400 hover:text-gray-700 text-2xl font-bold"
+          className="absolute top-2 right-2 text-gray-400 hover:text-gray-700 text-2xl font-bold cursor-pointer"
           onClick={onClose}
           aria-label="Close modal"
         >

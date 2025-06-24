@@ -1,18 +1,14 @@
-import { useState } from "react";
+// No need for useState
 
 const MAX_LENGTH = 140;
 const MIN_LENGTH = 5;
 
-const ThoughtInput = ({ onAddThought }) => {
-  const [text, setText] = useState("");
-  const [error, setError] = useState("");
-
+const ThoughtInput = ({ onAddThought, accessToken, onShowAuthModal, text, setText, error, setError }) => {
   const charsLeft = MAX_LENGTH - text.length;
 
   const handleInput = (event) => {
     setText(event.target.value);
     setError("");
-
     event.target.style.height = "auto";
     event.target.style.height = `${event.target.scrollHeight}px`;
   };
@@ -31,14 +27,24 @@ const ThoughtInput = ({ onAddThought }) => {
       setError("Your thought is too long!");
       return;
     }
-
+    if (!accessToken) {
+      setError("You must be logged in to post a thought.");
+      if (onShowAuthModal) onShowAuthModal();
+      return;
+    }
     try {
-      await onAddThought(text.trim()); // Call the function to add the thought
-      setText(""); // Clear the input field
-      setError(""); // Clear any error messages
-    } catch (error) {
+      await onAddThought(text.trim());
+      setText("");
+      setError("");
+    } catch {
       setError("Failed to send your thought. Please try again!");
-      console.error("Error adding thought:", error);
+    }
+  };
+
+  const handleButtonClick = (e) => {
+    if (!accessToken) {
+      e.preventDefault();
+      if (onShowAuthModal) onShowAuthModal();
     }
   };
 
@@ -72,12 +78,21 @@ const ThoughtInput = ({ onAddThought }) => {
 
       <button
         type="submit"
-        className=" bg-pink-300 text-black font-semibold rounded-full py-2 shadow flex items-center justify-center gap-2 mx-auto hover:bg-pink-500 hover:scale-105 transition-transform duration-300 ease-in-out disabled:opacity-50 cursor-pointer px-6 sm:px-10">
-        <span role="img" aria-label="heart" className="text-xl">❤️</span>
-        Send Happy Thought
-        <span role="img" aria-label="heart" className="text-xl">❤️</span>
+        className="bg-pink-300 text-black font-semibold rounded-full py-2 shadow flex items-center justify-center gap-2 mx-auto hover:bg-pink-500 hover:scale-105 transition-transform duration-300 ease-in-out disabled:opacity-50 cursor-pointer px-6 sm:px-10"
+        disabled={text.length < MIN_LENGTH || text.length > MAX_LENGTH}
+        onClick={handleButtonClick}
+      >
+        {accessToken ? (
+          <>
+            <span role="img" aria-label="heart" className="text-xl">❤️</span>
+            Send Happy Thought
+            <span role="img" aria-label="heart" className="text-xl">❤️</span>
+          </>
+        ) : (
+          "Login / Register"
+        )}
       </button>
-    </form >
+    </form>
   );
 };
 

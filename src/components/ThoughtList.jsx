@@ -1,6 +1,6 @@
 import ThoughtCard from "./ThoughtCard";
 
-const ThoughtList = ({ thoughts, onLike, onUpdate, onDelete }) => {
+const ThoughtList = ({ thoughts, onLike, onUpdate, onDelete, accessToken }) => {
   if (!Array.isArray(thoughts) || thoughts.length === 0) {
     return <p style={{ textAlign: "center" }}>No thoughts available.</p>; // Handle empty data
   }
@@ -17,6 +17,7 @@ const ThoughtList = ({ thoughts, onLike, onUpdate, onDelete }) => {
           onLike={onLike}
           onUpdate={onUpdate}
           onDelete={onDelete}
+          accessToken={accessToken}
         />
       ))}
     </div>
