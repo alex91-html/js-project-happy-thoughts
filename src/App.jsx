@@ -9,7 +9,7 @@ const App = () => {
   const [thoughts, setThoughts] = useState([]);
   const [accessToken, setAccessToken] = useState(() => localStorage.getItem("accessToken") || "");
   const [username, setUsername] = useState(() => localStorage.getItem("username") || "");
-  const [authError, setAuthError] = useState("");
+  const [authError, setAuthError] = useState(""); 
 
   const fetchThoughts = async () => {
     try {
